@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {GOOGLE_API_KEY} from './app.constants';
+import {AWS_KEY, AWS_S_KEY, GOOGLE_API_KEY} from './app.constants';
 import {Observable} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import * as S3 from 'aws-sdk/clients/s3';
@@ -59,7 +59,7 @@ export class AppService {
 
   uploadFileToAWS(file) {
     const contentType = file.type;
-    const bucket = new S3({accessKeyId: 'AKIA4HEOBBWOC5GICVWX', secretAccessKey: 'TvF6hOAy7P0Rm3AKWtLavysPYLfW77afhGcibinu', region: 'us-east-1'});
+    const bucket = new S3({accessKeyId: AWS_KEY.replace(/[^\w\s]/gi, ''), secretAccessKey: AWS_S_KEY.replace(/[^\w\s]/gi, ''), region: 'us-east-1'});
     const params = {
       Bucket: 'jitu-personal',
       Key: 'raw-images/' + file.name,
