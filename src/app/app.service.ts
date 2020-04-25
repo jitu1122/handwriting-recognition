@@ -59,7 +59,7 @@ export class AppService {
 
   uploadFileToAWS(file) {
     const contentType = file.type;
-    const bucket = new S3({accessKeyId: 'AKIA4HEOBBWOIO4H4VBI', secretAccessKey: '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', region: 'us-east-1'});
+    const bucket = new S3({accessKeyId: 'AKIA4HEOBBWOC5GICVWX', secretAccessKey: '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', region: 'us-east-1'});
     const params = {
       Bucket: 'jitu-personal',
       Key: 'raw-images/' + file.name,
