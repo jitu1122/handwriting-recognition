@@ -1,0 +1,48 @@
+<div style="display: flex; height: 100%; width: 100%">
+    <div style="margin: auto; width: 100%; max-width: 700px">
+        <div class="inner-container">
+            <button *ngIf="appService.image" (click)="backClick()" mat-button color="primary">
+                <mat-icon aria-hidden="false" aria-label="history icon">arrow_left</mat-icon>
+                Back
+            </button>
+            <button *ngIf="appService.historyData.length > 0" routerLink="/previous-results" mat-stroked-button color="primary">
+                <mat-icon aria-hidden="false" aria-label="history icon">history</mat-icon>
+                Previous Results
+            </button>
+        </div>
+        <div *ngIf="!appService.image" class="inner-container">
+            <div class="drop-box" (click)="fileInput.click()">
+                <div class="drop-box-text">
+                    Drag image file here or<br>Browse from your computer
+                </div>
+                <label class="drop-box-label"></label>
+                <input #fileInput (change)="appService.fileUpload($event)" type="file" id="input" hidden>
+            </div>
+        </div>
+        <div *ngIf="appService.image" class="inner-container">
+            <mat-card>
+                <mat-spinner *ngIf="!appService.text"></mat-spinner>
+                <div class="result-image">
+                    <img mat-card-image [src]="appService.image" [style.opacity]="!this.appService.text? '0.4' : '1'"
+                         alt="Raw Image">
+                </div>
+                <mat-card-header *ngIf="appService.text">
+                    <mat-card-title>Result</mat-card-title>
+                </mat-card-header>
+                <mat-card-content *ngIf="appService.text">
+                    <p>
+                        {{appService.text}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions *ngIf="appService.text">
+                    <button mat-button>Copy to clipboard</button>
+                    <button (click)="backClick()" mat-button>Reset</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="inner-container">
+
+        </div>
+    </div>
+</div>
+

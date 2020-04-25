@@ -1,0 +1,20 @@
+<div class="inner-container">
+    <button routerLink="/" mat-button color="primary"><mat-icon aria-hidden="false" aria-label="history icon">arrow_left</mat-icon> Back</button>
+</div>
+<div class="inner-container">
+    <h1>Previous Results</h1>
+</div>
+<div class="inner-container">
+    <div class="row">
+        <div class="col-sm-4 col-md4 col-lg-4 image-container" *ngFor="let data of appService.historyData">
+            <div class="button-container">
+                <button class="result-button" (click)="showResult(data)" mat-flat-button color="primary">
+                    <mat-icon aria-hidden="false" aria-label="history icon">format_align_left</mat-icon>
+                    View Result
+                </button>
+            </div>
+            <div class="image-holder"><img class="preview-image" style="max-width: 300px; cursor: pointer" [src]="data.image" alt=""></div>
+        </div>
+    </div>
+
+</div>
